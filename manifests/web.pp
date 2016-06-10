@@ -3,11 +3,10 @@ ec2_instance { 'test-puppet':
   region            => 'eu-central-1',
   availability_zone => 'eu-central-1b',
   image_id          => 'ami-979e73f8',
-  instance_type     => 't1.micro',
+  instance_type     => 't2.micro',
   monitoring        => true,
   key_name          => 'pulse-key',
   subnet            => 'vpc-336ed15a',
-  virtualization_type => 'PV',
   security_groups   => ['autosubmit'],
   block_devices => [
   {
@@ -16,6 +15,7 @@ ec2_instance { 'test-puppet':
   }
 ],
   tags              => {
-    Name => 'test-puppet',
+    tag_name => 'test-puppet',
   },
 }
+

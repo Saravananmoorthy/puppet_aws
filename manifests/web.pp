@@ -19,3 +19,17 @@ ec2_instance { 'test-puppet':
   },
 }
 
+elb_loadbalancer { 'puppet-lb':
+  ensure             => present,
+  region             => eu-central-1,
+  availability_zones   => ['eu-central-1a', 'eu-central-1b'],
+  security_groups      => ['autosubmit'],
+  instances          => ['test-puppet'],
+  listeners          => [{
+    protocol           => 'tcp',
+    load_balancer_port => 80,
+    instance_protocol  => 'tcp',
+    instance_port      => 80,
+  }],
+}
+
